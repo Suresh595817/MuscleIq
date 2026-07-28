@@ -1,0 +1,15 @@
+# Android
+Android/.gradle
+Android/build
+Android/app/build
+Android/local.properties
+Android/**/*.apk
+Android/**/*.aab
+
+# Web
+Web/node_modules
+Web/dist
+Web/.env
+
+# General
+.DS_Store

@@ -1,0 +1,404 @@
+﻿Initialized native services in: C:\Users\asus\.gradle\native
+Initialized jansi services in: C:\Users\asus\.gradle\native
+Removing daemon from the registry due to communication failure. Daemon information: DaemonInfo{pid=10672, address=[e0a423a4-6298-47c4-9d65-d730a81a9a67 port:63194, addresses:[/127.0.0.1]], state=Idle, lastBusy=1785141202179, context=DefaultDaemonContext[uid=eb3da0d6-ff2f-48a7-a49b-a4223c57992d,javaHome=C:\Program Files\Java\jdk-25,javaVersion=25,javaVendor=Oracle Corporation,daemonRegistryDir=C:\Users\asus\.gradle\daemon,pid=10672,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]}
+Removing 0 daemon stop events from registry
+Previous Daemon (31916) stopped at Mon Jul 27 14:02:17 IST 2026 by user or operating system
+Previous Daemon (23676) stopped at Mon Jul 27 14:03:19 IST 2026 by user or operating system
+Previous Daemon (10672) stopped at Mon Jul 27 14:04:29 IST 2026 by user or operating system
+Starting a Gradle Daemon, 1 incompatible and 3 stopped Daemons could not be reused, use --status for details
+Starting process 'Gradle build daemon'. Working directory: C:\Users\asus\.gradle\daemon\9.0.0 Command: C:\Program Files\Java\jdk-25\bin\java.exe --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xmx2048m -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -cp C:\Users\asus\.gradle\wrapper\dists\gradle-9.0.0-bin\d6wjpkvcgsg3oed0qlfss3wgl\gradle-9.0.0\lib\gradle-daemon-main-9.0.0.jar -javaagent:C:\Users\asus\.gradle\wrapper\dists\gradle-9.0.0-bin\d6wjpkvcgsg3oed0qlfss3wgl\gradle-9.0.0\lib\agents\gradle-instrumentation-agent-9.0.0.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.0.0
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 1.988 secs.
+The client will now receive all logging from the daemon (pid: 23716). The daemon log file: C:\Users\asus\.gradle\daemon\9.0.0\daemon-23716.out.log
+Starting build in new daemon [memory: 2 GiB]
+Using 12 worker leases.
+Received JVM installation metadata from 'C:\Program Files\Java\jdk-25': {JAVA_HOME=C:\Program Files\Java\jdk-25, JAVA_VERSION=25.0.1, JAVA_VENDOR=Oracle Corporation, RUNTIME_NAME=Java(TM) SE Runtime Environment, RUNTIME_VERSION=25.0.1+8-LTS-27, VM_NAME=Java HotSpot(TM) 64-Bit Server VM, VM_VERSION=25.0.1+8-LTS-27, VM_VENDOR=Oracle Corporation, OS_ARCH=amd64}
+Watching the file system is configured to be enabled if available
+Now considering [C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ] as hierarchies to watch
+File system watching is active
+Starting Build
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '1.0.0']
+Settings evaluated using settings file 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\settings.gradle.kts'.
+Projects loaded. Root project using build file 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\build.gradle.kts'.
+Included projects: [root project 'MuscleIQ', project ':app']
+
+> Configure project :
+Evaluating root project 'MuscleIQ' using build file 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '8.13.2', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '1.9.22', apply: false]
+Resolved plugin [id: 'com.google.gms.google-services', version: '4.4.1', apply: false]
+
+> Configure project :app
+Evaluating project ':app' using build file 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build.gradle.kts'.
+Resolved plugin [id: 'com.android.application']
+Resolved plugin [id: 'org.jetbrains.kotlin.android']
+Resolved plugin [id: 'com.google.gms.google-services']
+Using default execution profile
+Using Kotlin Gradle Plugin gradle82 variant
+All projects evaluated.
+Task name matched 'assembleDebug'
+Selected primary task 'assembleDebug' from project :
+Tasks to be executed: [task ':app:preBuild', task ':app:preDebugBuild', task ':app:mergeDebugNativeDebugMetadata', task ':app:checkKotlinGradlePluginConfigurationErrors', task ':app:checkDebugAarMetadata', task ':app:processDebugNavigationResources', task ':app:compileDebugNavigationResources', task ':app:generateDebugResValues', task ':app:processDebugGoogleServices', task ':app:mapDebugSourceSetPaths', task ':app:generateDebugResources', task ':app:mergeDebugResources', task ':app:packageDebugResources', task ':app:parseDebugLocalResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':app:processDebugResources', task ':app:compileDebugKotlin', task ':app:javaPreCompileDebug', task ':app:compileDebugJavaWithJavac', task ':app:mergeDebugShaders', task ':app:compileDebugShaders', task ':app:generateDebugAssets', task ':app:mergeDebugAssets', task ':app:compressDebugAssets', task ':app:processDebugJavaRes', task ':app:mergeDebugJavaResource', task ':app:checkDebugDuplicateClasses', task ':app:desugarDebugFileDependencies', task ':app:mergeExtDexDebug', task ':app:mergeLibDexDebug', task ':app:dexBuilderDebug', task ':app:mergeProjectDexDebug', task ':app:mergeDebugJniLibFolders', task ':app:mergeDebugNativeLibs', task ':app:stripDebugDebugSymbols', task ':app:validateSigningDebug', task ':app:writeDebugAppMetadata', task ':app:writeDebugSigningConfigVersions', task ':app:packageDebug', task ':app:createDebugApkListingFileRedirect', task ':app:assembleDebug']
+Tasks that were excluded: []
+Resolve mutations for :app:preBuild (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:preBuild (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:preBuild UP-TO-DATE
+Skipping task ':app:preBuild' as it has no actions.
+Resolve mutations for :app:preDebugBuild (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:preDebugBuild (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:preDebugBuild UP-TO-DATE
+Skipping task ':app:preDebugBuild' as it has no actions.
+Resolve mutations for :app:mergeDebugNativeDebugMetadata (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:mergeDebugNativeDebugMetadata (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+Skipping task ':app:mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+Resolve mutations for :app:checkKotlinGradlePluginConfigurationErrors (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:checkKotlinGradlePluginConfigurationErrors (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+Caching disabled for task ':app:checkKotlinGradlePluginConfigurationErrors' because:
+  Build cache is disabled
+Task ':app:checkKotlinGradlePluginConfigurationErrors' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :app:checkDebugAarMetadata (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:checkDebugAarMetadata (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+Caching disabled for task ':app:checkDebugAarMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugAarMetadata' as it is up-to-date.
+Resolve mutations for :app:processDebugNavigationResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugNavigationResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugNavigationResources UP-TO-DATE
+Caching disabled for task ':app:processDebugNavigationResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugNavigationResources' as it is up-to-date.
+Resolve mutations for :app:compileDebugNavigationResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:compileDebugNavigationResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+Caching disabled for task ':app:compileDebugNavigationResources' because:
+  Build cache is disabled
+Skipping task ':app:compileDebugNavigationResources' as it is up-to-date.
+Resolve mutations for :app:generateDebugResValues (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:generateDebugResValues (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:generateDebugResValues UP-TO-DATE
+Caching disabled for task ':app:generateDebugResValues' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResValues' as it is up-to-date.
+Resolve mutations for :app:processDebugGoogleServices (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugGoogleServices (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugGoogleServices UP-TO-DATE
+Caching disabled for task ':app:processDebugGoogleServices' because:
+  Build cache is disabled
+Skipping task ':app:processDebugGoogleServices' as it is up-to-date.
+Resolve mutations for :app:mapDebugSourceSetPaths (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:mapDebugSourceSetPaths (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Caching disabled for task ':app:mapDebugSourceSetPaths' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:mapDebugSourceSetPaths' as it is up-to-date.
+Resolve mutations for :app:generateDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:generateDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:generateDebugResources UP-TO-DATE
+Caching disabled for task ':app:generateDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResources' as it is up-to-date.
+Resolve mutations for :app:mergeDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:mergeDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:mergeDebugResources UP-TO-DATE
+Caching disabled for task ':app:mergeDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:mergeDebugResources' as it is up-to-date.
+Resolve mutations for :app:packageDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:packageDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:packageDebugResources UP-TO-DATE
+Caching disabled for task ':app:packageDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:packageDebugResources' as it is up-to-date.
+Resolve mutations for :app:parseDebugLocalResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:parseDebugLocalResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:parseDebugLocalResources UP-TO-DATE
+Caching disabled for task ':app:parseDebugLocalResources' because:
+  Build cache is disabled
+Skipping task ':app:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :app:createDebugCompatibleScreenManifests (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:createDebugCompatibleScreenManifests (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Caching disabled for task ':app:createDebugCompatibleScreenManifests' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:createDebugCompatibleScreenManifests' as it is up-to-date.
+Resolve mutations for :app:extractDeepLinksDebug (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:extractDeepLinksDebug (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+Caching disabled for task ':app:extractDeepLinksDebug' because:
+  Build cache is disabled
+Skipping task ':app:extractDeepLinksDebug' as it is up-to-date.
+Resolve mutations for :app:processDebugMainManifest (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugMainManifest (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugMainManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugMainManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugMainManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifest (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugManifest (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifestForPackage (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugManifestForPackage (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+Custom actions are attached to task ':app:processDebugManifestForPackage'.
+Caching disabled for task ':app:processDebugManifestForPackage' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifestForPackage' as it is up-to-date.
+Resolve mutations for :app:processDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:processDebugResources (Thread[#104,Execution worker Thread 2,5,main]) started.
+
+> Task :app:processDebugResources UP-TO-DATE
+Registered task dependencies: app:debugCompileClasspath
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-test-manifest
+Skipping misunderstood TO dep string: androidx.compose.ui:ui
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-graphics
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling-preview
+Skipping misunderstood TO dep string: androidx.compose.material3:material3
+Skipping misunderstood TO dep string: androidx.compose.material:material-icons-extended
+Starting dependency analysis
+Caching disabled for task ':app:processDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugResources' as it is up-to-date.
+Resolve mutations for :app:compileDebugKotlin (Thread[#104,Execution worker Thread 2,5,main]) started.
+:app:compileDebugKotlin (Thread[#104,Execution worker Thread 2,5,main]) started.
+Resolve mutations for :app:javaPreCompileDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:javaPreCompileDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+Caching disabled for task ':app:javaPreCompileDebug' because:
+  Build cache is disabled
+Skipping task ':app:javaPreCompileDebug' as it is up-to-date.
+Resolve mutations for :app:mergeDebugShaders (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeDebugShaders (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeDebugShaders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugShaders' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugShaders' as it is up-to-date.
+Resolve mutations for :app:compileDebugShaders (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:compileDebugShaders (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:compileDebugShaders NO-SOURCE
+Skipping task ':app:compileDebugShaders' as it has no source files and no previous output files.
+Resolve mutations for :app:generateDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:generateDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:generateDebugAssets UP-TO-DATE
+Skipping task ':app:generateDebugAssets' as it has no actions.
+Resolve mutations for :app:mergeDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeDebugAssets UP-TO-DATE
+Caching disabled for task ':app:mergeDebugAssets' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugAssets' as it is up-to-date.
+Resolve mutations for :app:compressDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:compressDebugAssets (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:compressDebugAssets UP-TO-DATE
+Caching disabled for task ':app:compressDebugAssets' because:
+  Build cache is disabled
+Skipping task ':app:compressDebugAssets' as it is up-to-date.
+Resolve mutations for :app:checkDebugDuplicateClasses (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:checkDebugDuplicateClasses (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+Caching disabled for task ':app:checkDebugDuplicateClasses' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugDuplicateClasses' as it is up-to-date.
+Resolve mutations for :app:desugarDebugFileDependencies (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:desugarDebugFileDependencies (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+Caching disabled for task ':app:desugarDebugFileDependencies' because:
+  Build cache is disabled
+Skipping task ':app:desugarDebugFileDependencies' as it is up-to-date.
+Resolve mutations for :app:mergeExtDexDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeExtDexDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeExtDexDebug UP-TO-DATE
+Caching disabled for task ':app:mergeExtDexDebug' because:
+  Build cache is disabled
+Skipping task ':app:mergeExtDexDebug' as it is up-to-date.
+Resolve mutations for :app:mergeLibDexDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeLibDexDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeLibDexDebug UP-TO-DATE
+Caching disabled for task ':app:mergeLibDexDebug' because:
+  Build cache is disabled
+Skipping task ':app:mergeLibDexDebug' as it is up-to-date.
+Resolve mutations for :app:mergeDebugJniLibFolders (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeDebugJniLibFolders (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugJniLibFolders' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugJniLibFolders' as it is up-to-date.
+Resolve mutations for :app:mergeDebugNativeLibs (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:mergeDebugNativeLibs (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+Skipping task ':app:mergeDebugNativeLibs' as it has no source files and no previous output files.
+Resolve mutations for :app:stripDebugDebugSymbols (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:stripDebugDebugSymbols (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+Skipping task ':app:stripDebugDebugSymbols' as it has no source files and no previous output files.
+Resolve mutations for :app:validateSigningDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:validateSigningDebug (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:validateSigningDebug UP-TO-DATE
+Caching disabled for task ':app:validateSigningDebug' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:validateSigningDebug' as it is up-to-date.
+Resolve mutations for :app:writeDebugAppMetadata (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:writeDebugAppMetadata (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+Caching disabled for task ':app:writeDebugAppMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugAppMetadata' as it is up-to-date.
+Resolve mutations for :app:writeDebugSigningConfigVersions (Thread[#105,Execution worker Thread 3,5,main]) started.
+:app:writeDebugSigningConfigVersions (Thread[#105,Execution worker Thread 3,5,main]) started.
+
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+Caching disabled for task ':app:writeDebugSigningConfigVersions' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugSigningConfigVersions' as it is up-to-date.
+
+> Task :app:compileDebugKotlin
+Registered task dependencies: app:kotlinCompilerClasspath
+Starting dependency analysis
+Registered task dependencies: app:kotlinCompilerPluginClasspathDebug
+Starting dependency analysis
+Caching disabled for task ':app:compileDebugKotlin' because:
+  Build cache is disabled
+Task ':app:compileDebugKotlin' is not up-to-date because:
+  Task has failed previously.
+The input changes require a full rebuild for incremental task ':app:compileDebugKotlin'.
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\kotlin', not found
+file or directory 'C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\debug\java', not found
+Kotlin source files: C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\data\model\ExerciseCatalog.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\data\model\Models.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\data\model\WorkoutLibrary.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\data\repository\AuthRepository.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\data\repository\WorkoutRepository.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\MainActivity.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\components\MuscleHeatmap.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\AccountSettingsScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\AuthMethodScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\AuthScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\ChangePasswordScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\DashboardScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\EditProfileScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\HelpCenterScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\HistoryScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\MuscleMapScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\NotificationsScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\PhoneAuthScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\ProfileScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\RateAppScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\SubscriptionScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\screens\WorkoutScreen.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\theme\Theme.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\AuthViewModel.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\DashboardViewModel.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\HistoryViewModel.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\MuscleMapViewModel.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\ProfileViewModel.kt, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\src\main\java\com\example\muscleiq\ui\viewmodel\WorkoutViewModel.kt
+Java source files: 
+Script source files: 
+Script file extensions: 
+Using Kotlin/JVM incremental compilation
+[KOTLIN] Kotlin compilation 'jdkHome' argument: null
+i: found daemon on port 17784 (189093 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-31-35.661Z.69144caa518a45a466ab17db517fff12.17784.run' (189093 ms old), but no daemon, ignoring it
+i: found daemon on port 17543 (130146 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-32-34.609Z.69144caa518a45a466ab17db517fff12.17543.run' (130146 ms old), but no daemon, ignoring it
+i: found daemon on port 17089 (69091 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-33-35.665Z.69144caa518a45a466ab17db517fff12.17089.run' (69091 ms old), but no daemon, ignoring it
+i: starting the daemon as: C:\Program Files\Java\jdk-25\bin\java -cp C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-embeddable\1.9.22\9cd4dc7773cf2a99ecd961a88fbbc9a2da3fb5e1\kotlin-compiler-embeddable-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.9.22\d6c44cd08d8f3f9bece8101216dbe6553365c6e3\kotlin-stdlib-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-script-runtime\1.9.22\f8139a46fc677ec9badc49ae954392f4f5e7e7c7\kotlin-script-runtime-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-reflect\1.6.10\1cbe9c92c12a94eea200d23c2bbaedaf3daf5132\kotlin-reflect-1.6.10.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-embeddable\1.9.22\20e2c5df715f3240c765cfc222530e2796542021\kotlin-daemon-embeddable-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.intellij.deps\trove4j\1.0.20200330\3afb14d5f9ceb459d724e907a21145e8ff394f02\trove4j-1.0.20200330.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar -Djava.awt.headless=true -D$java.rmi.server.hostname=127.0.0.1 -Xmx2048m -Dkotlin.environment.keepalive -ea --add-exports java.base/sun.nio.ch=ALL-UNNAMED org.jetbrains.kotlin.daemon.KotlinCompileDaemon --daemon-runFilesPath C:\Users\asus\AppData\Local\kotlin\daemon --daemon-autoshutdownIdleSeconds=7200 --daemon-compilerClasspath C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-embeddable\1.9.22\9cd4dc7773cf2a99ecd961a88fbbc9a2da3fb5e1\kotlin-compiler-embeddable-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.9.22\d6c44cd08d8f3f9bece8101216dbe6553365c6e3\kotlin-stdlib-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-script-runtime\1.9.22\f8139a46fc677ec9badc49ae954392f4f5e7e7c7\kotlin-script-runtime-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-reflect\1.6.10\1cbe9c92c12a94eea200d23c2bbaedaf3daf5132\kotlin-reflect-1.6.10.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-embeddable\1.9.22\20e2c5df715f3240c765cfc222530e2796542021\kotlin-daemon-embeddable-1.9.22.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains.intellij.deps\trove4j\1.0.20200330\3afb14d5f9ceb459d724e907a21145e8ff394f02\trove4j-1.0.20200330.jar;C:\Users\asus\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar
+i: Received the message signalling that the daemon is ready
+i: new daemon started, trying to find it
+i: found daemon on port 17784 (189818 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-31-35.661Z.69144caa518a45a466ab17db517fff12.17784.run' (189818 ms old), but no daemon, ignoring it
+i: found daemon on port 17543 (130871 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-32-34.609Z.69144caa518a45a466ab17db517fff12.17543.run' (130871 ms old), but no daemon, ignoring it
+i: found daemon on port 17089 (69816 ms old), trying to connect
+i: cannot connect to registry: Connection refused: connect
+i: found fresh run file 'C:\Users\asus\AppData\Local\kotlin\daemon\kotlin-daemon.2026-07-27T08-33-35.665Z.69144caa518a45a466ab17db517fff12.17089.run' (69816 ms old), but no daemon, ignoring it
+i: found daemon on port 17217 (34 ms old), trying to connect
+i: connected to the daemon
+Options for KOTLIN DAEMON: IncrementalCompilationOptions(super=CompilationOptions(compilerMode=INCREMENTAL_COMPILER, targetPlatform=JVM, reportCategories=[0, 3], reportSeverity=2, requestedCompilationResults=[0], kotlinScriptExtensions=[]), areFileChangesKnown=false, modifiedFiles=null, deletedFiles=null, classpathChanges=NotAvailableForNonIncrementalRun, workingDir=C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build\kotlin\compileDebugKotlin\cacheable, multiModuleICSettings=MultiModuleICSettings(buildHistoryFile=C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build\kotlin\compileDebugKotlin\local-state\build-history.bin, useModuleDetection=true), usePreciseJavaTracking=true, outputFiles=[C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build\tmp\kotlin-classes\debug, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build\kotlin\compileDebugKotlin\cacheable, C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ\app\build\kotlin\compileDebugKotlin\local-state])
+
+> Task :app:compileDebugKotlin FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/asus/.gemini/antigravity/scratch/MuscleIQ/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.0.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+30 actionable tasks: 2 executed, 28 up-to-date
+Watched directory hierarchies: [C:\Users\asus\.gemini\antigravity\scratch\MuscleIQ]

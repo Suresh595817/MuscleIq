@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "136499708353",
+    "project_id": "muscleiq-ecfbc",
+    "storage_bucket": "muscleiq-ecfbc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136499708353:android:a9d8039ef38e4e2d572f40",
+        "android_client_info": {
+          "package_name": "com.example.muscleiq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136499708353-6258hfttc6hq8tl45om9ektprgcjqkoe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.muscleiq",
+            "certificate_hash": "96d4b89e5b3b27cdb301297433363421d0d380d5"
+          }
+        },
+        {
+          "client_id": "136499708353-7ccdiihm2shls1vtociqgo29vrbnvjai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB38CjbHrF3y80ocxI6iIDtwePfL9As__I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136499708353-7ccdiihm2shls1vtociqgo29vrbnvjai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
