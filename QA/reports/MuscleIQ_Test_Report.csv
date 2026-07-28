@@ -1,0 +1,101 @@
+Test ID,Platform,Module,Scenario,Expected Result,Status
+TC_001,Android,Auth,Verify login with valid credentials,User navigates to Dashboard,Pending
+TC_002,Android,Auth,Verify login with invalid credentials,Error message displayed,Pending
+TC_003,Android,Auth,Verify login with empty email,Validation error on email field,Pending
+TC_004,Android,Auth,Verify login with empty password,Validation error on password field,Pending
+TC_005,Android,Auth,Verify successful sign up,User created and navigated to Dashboard,Pending
+TC_006,Android,Auth,Verify sign up with weak password,Password too weak error displayed,Pending
+TC_007,Android,Auth,Verify sign up with existing email,Email already in use error displayed,Pending
+TC_008,Android,Auth,Verify password reset link,Reset link sent to email,Pending
+TC_009,Android,Auth,Verify sign out functionality,User logged out and returned to login screen,Pending
+TC_010,Android,Auth,Verify persistent login after restart,User remains logged in,Pending
+TC_011,Web,Auth,Verify login with valid credentials,User navigates to Dashboard,Pending
+TC_012,Web,Auth,Verify login with invalid credentials,Error message displayed,Pending
+TC_013,Web,Auth,Verify login with empty email,Validation error on email field,Pending
+TC_014,Web,Auth,Verify login with empty password,Validation error on password field,Pending
+TC_015,Web,Auth,Verify successful sign up,User created and navigated to Dashboard,Pending
+TC_016,Web,Auth,Verify sign up with weak password,Password too weak error displayed,Pending
+TC_017,Web,Auth,Verify sign up with existing email,Email already in use error displayed,Pending
+TC_018,Web,Auth,Verify password reset link,Reset link sent to email,Pending
+TC_019,Web,Auth,Verify sign out functionality,User logged out and returned to login screen,Pending
+TC_020,Web,Auth,Verify persistent login after restart,User remains logged in,Pending
+TC_021,Android,Dashboard,Verify dashboard loads user data,User name and stats are visible,Pending
+TC_022,Android,Dashboard,Verify total workouts stat,Total workouts matches database,Pending
+TC_023,Android,Dashboard,Verify active streak calculation,Streak correctly calculated based on consecutive days,Pending
+TC_024,Android,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Pending
+TC_025,Android,Dashboard,Verify recent activity list,Most recent workouts are shown in order,Pending
+TC_026,Web,Dashboard,Verify dashboard loads user data,User name and stats are visible,Pending
+TC_027,Web,Dashboard,Verify total workouts stat,Total workouts matches database,Pending
+TC_028,Web,Dashboard,Verify active streak calculation,Streak correctly calculated based on consecutive days,Pending
+TC_029,Web,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Pending
+TC_030,Web,Dashboard,Verify recent activity list,Most recent workouts are shown in order,Pending
+TC_031,Android,AI Generator,Verify UI elements load correctly,"Time, Equipment, Focus inputs are visible",Pending
+TC_032,Android,AI Generator,Verify generation with all fields filled,Workout JSON generated and displayed,Pending
+TC_033,Android,AI Generator,Verify generation with empty optional fields,Workout generated successfully,Pending
+TC_034,Android,AI Generator,Verify error handling on API failure,Graceful error message displayed,Pending
+TC_035,Android,AI Generator,Verify 'Save to My Workouts' button,Generated workout added to library,Pending
+TC_036,Web,AI Generator,Verify UI elements load correctly,"Time, Equipment, Focus inputs are visible",Pending
+TC_037,Web,AI Generator,Verify generation with all fields filled,Workout JSON generated and displayed,Pending
+TC_038,Web,AI Generator,Verify generation with empty optional fields,Workout generated successfully,Pending
+TC_039,Web,AI Generator,Verify error handling on API failure,Graceful error message displayed,Pending
+TC_040,Web,AI Generator,Verify 'Save to My Workouts' button,Generated workout added to library,Pending
+TC_041,Android,Tracker,Verify adding a new workout name,Name input accepts text,Pending
+TC_042,Android,Tracker,Verify adding an exercise,New exercise block appears,Pending
+TC_043,Android,Tracker,Verify selecting muscle group,Dropdown updates successfully,Pending
+TC_044,Android,Tracker,Verify adding a set,New set row added with reps and weight inputs,Pending
+TC_045,Android,Tracker,Verify deleting a set,Set row is removed,Pending
+TC_046,Android,Tracker,Verify deleting an exercise,Exercise block is removed,Pending
+TC_047,Android,Tracker,Verify saving empty workout,Validation error prevents saving,Pending
+TC_048,Android,Tracker,Verify saving valid workout,Workout saved to Firestore successfully,Pending
+TC_049,Android,Tracker,Verify success message after saving,Green success message displayed,Pending
+TC_050,Android,Tracker,Verify form resets after saving,All inputs cleared,Pending
+TC_051,Web,Tracker,Verify adding a new workout name,Name input accepts text,Pending
+TC_052,Web,Tracker,Verify adding an exercise,New exercise block appears,Pending
+TC_053,Web,Tracker,Verify selecting muscle group,Dropdown updates successfully,Pending
+TC_054,Web,Tracker,Verify adding a set,New set row added with reps and weight inputs,Pending
+TC_055,Web,Tracker,Verify deleting a set,Set row is removed,Pending
+TC_056,Web,Tracker,Verify deleting an exercise,Exercise block is removed,Pending
+TC_057,Web,Tracker,Verify saving empty workout,Validation error prevents saving,Pending
+TC_058,Web,Tracker,Verify saving valid workout,Workout saved to Firestore successfully,Pending
+TC_059,Web,Tracker,Verify success message after saving,Green success message displayed,Pending
+TC_060,Web,Tracker,Verify form resets after saving,All inputs cleared,Pending
+TC_061,Android,Analytics,Verify workouts fetch from Firestore,Charts populate with data,Pending
+TC_062,Android,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Pending
+TC_063,Android,Analytics,Verify filtering by week/month,Chart data adjusts accordingly,Pending
+TC_064,Android,History,Verify history list view,Past workouts listed chronologically,Pending
+TC_065,Android,History,Verify clicking a history item,Details of past workout shown,Pending
+TC_066,Web,Analytics,Verify workouts fetch from Firestore,Charts populate with data,Pending
+TC_067,Web,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Pending
+TC_068,Web,Analytics,Verify filtering by week/month,Chart data adjusts accordingly,Pending
+TC_069,Web,History,Verify history list view,Past workouts listed chronologically,Pending
+TC_070,Web,History,Verify clicking a history item,Details of past workout shown,Pending
+TC_071,Android,Settings,Verify settings toggle 1,Setting is saved locally,Pending
+TC_072,Web,Settings,Verify settings toggle 1,Setting is saved in LocalStorage,Pending
+TC_073,Android,Settings,Verify settings toggle 2,Setting is saved locally,Pending
+TC_074,Web,Settings,Verify settings toggle 2,Setting is saved in LocalStorage,Pending
+TC_075,Android,Settings,Verify settings toggle 3,Setting is saved locally,Pending
+TC_076,Web,Settings,Verify settings toggle 3,Setting is saved in LocalStorage,Pending
+TC_077,Android,Settings,Verify settings toggle 4,Setting is saved locally,Pending
+TC_078,Web,Settings,Verify settings toggle 4,Setting is saved in LocalStorage,Pending
+TC_079,Android,Settings,Verify settings toggle 5,Setting is saved locally,Pending
+TC_080,Web,Settings,Verify settings toggle 5,Setting is saved in LocalStorage,Pending
+TC_081,Android,Settings,Verify settings toggle 6,Setting is saved locally,Pending
+TC_082,Web,Settings,Verify settings toggle 6,Setting is saved in LocalStorage,Pending
+TC_083,Android,Settings,Verify settings toggle 7,Setting is saved locally,Pending
+TC_084,Web,Settings,Verify settings toggle 7,Setting is saved in LocalStorage,Pending
+TC_085,Android,Settings,Verify settings toggle 8,Setting is saved locally,Pending
+TC_086,Web,Settings,Verify settings toggle 8,Setting is saved in LocalStorage,Pending
+TC_087,Android,Settings,Verify settings toggle 9,Setting is saved locally,Pending
+TC_088,Web,Settings,Verify settings toggle 9,Setting is saved in LocalStorage,Pending
+TC_089,Android,Settings,Verify settings toggle 10,Setting is saved locally,Pending
+TC_090,Web,Settings,Verify settings toggle 10,Setting is saved in LocalStorage,Pending
+TC_091,Android,Settings,Verify settings toggle 11,Setting is saved locally,Pending
+TC_092,Web,Settings,Verify settings toggle 11,Setting is saved in LocalStorage,Pending
+TC_093,Android,Settings,Verify settings toggle 12,Setting is saved locally,Pending
+TC_094,Web,Settings,Verify settings toggle 12,Setting is saved in LocalStorage,Pending
+TC_095,Android,Settings,Verify settings toggle 13,Setting is saved locally,Pending
+TC_096,Web,Settings,Verify settings toggle 13,Setting is saved in LocalStorage,Pending
+TC_097,Android,Settings,Verify settings toggle 14,Setting is saved locally,Pending
+TC_098,Web,Settings,Verify settings toggle 14,Setting is saved in LocalStorage,Pending
+TC_099,Android,Settings,Verify settings toggle 15,Setting is saved locally,Pending
+TC_100,Web,Settings,Verify settings toggle 15,Setting is saved in LocalStorage,Pending
