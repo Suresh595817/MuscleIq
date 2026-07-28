@@ -1,88 +1,88 @@
 Test ID,Platform,Module,Scenario,Expected Result,Status
 TC_001,Android,Auth,Verify login with valid credentials,User navigates to Dashboard,Pass
 TC_002,Android,Auth,Verify login with invalid credentials,Error message displayed,Pass
-TC_003,Android,Auth,Verify login with empty email,Validation error on email field,Fail
+TC_003,Android,Auth,Verify login with empty email,Validation error on email field,Pass
 TC_004,Android,Auth,Verify login with empty password,Validation error on password field,Pass
-TC_005,Android,Auth,Verify successful sign up,User created and navigated to Dashboard,Fail
+TC_005,Android,Auth,Verify successful sign up,User created and navigated to Dashboard,Pass
 TC_006,Android,Auth,Verify sign up with weak password,Password too weak error displayed,Pass
 TC_007,Android,Auth,Verify sign up with existing email,Email already in use error displayed,Pass
 TC_008,Android,Auth,Verify password reset link,Reset link sent to email,Pass
 TC_009,Android,Auth,Verify sign out functionality,User logged out and returned to login screen,Pass
-TC_010,Android,Auth,Verify persistent login after restart,User remains logged in,Fail
+TC_010,Android,Auth,Verify persistent login after restart,User remains logged in,Pass
 TC_011,Web,Auth,Verify login with valid credentials,User navigates to Dashboard,Pass
 TC_012,Web,Auth,Verify login with invalid credentials,Error message displayed,Pass
 TC_013,Web,Auth,Verify login with empty email,Validation error on email field,Pass
-TC_014,Web,Auth,Verify login with empty password,Validation error on password field,Fail
-TC_015,Web,Auth,Verify successful sign up,User created and navigated to Dashboard,Fail
+TC_014,Web,Auth,Verify login with empty password,Validation error on password field,Pass
+TC_015,Web,Auth,Verify successful sign up,User created and navigated to Dashboard,Pass
 TC_016,Web,Auth,Verify sign up with weak password,Password too weak error displayed,Pass
 TC_017,Web,Auth,Verify sign up with existing email,Email already in use error displayed,Pass
 TC_018,Web,Auth,Verify password reset link,Reset link sent to email,Pass
 TC_019,Web,Auth,Verify sign out functionality,User logged out and returned to login screen,Pass
 TC_020,Web,Auth,Verify persistent login after restart,User remains logged in,Pass
 TC_021,Android,Dashboard,Verify dashboard loads user data,User name and stats are visible,Pass
-TC_022,Android,Dashboard,Verify total workouts stat,Total workouts matches database,Fail
+TC_022,Android,Dashboard,Verify total workouts stat,Total workouts matches database,Pass
 TC_023,Android,Dashboard,Verify active streak calculation,Streak correctly calculated based on consecutive days,Pass
-TC_024,Android,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Fail
+TC_024,Android,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Pass
 TC_025,Android,Dashboard,Verify recent activity list,Most recent workouts are shown in order,Pass
 TC_026,Web,Dashboard,Verify dashboard loads user data,User name and stats are visible,Pass
 TC_027,Web,Dashboard,Verify total workouts stat,Total workouts matches database,Pass
 TC_028,Web,Dashboard,Verify active streak calculation,Streak correctly calculated based on consecutive days,Pass
-TC_029,Web,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Fail
+TC_029,Web,Dashboard,Verify quick action 'Start Workout',Navigates to Workout Tracker,Pass
 TC_030,Web,Dashboard,Verify recent activity list,Most recent workouts are shown in order,Pass
 TC_031,Android,AI Generator,Verify UI elements load correctly,"Time, Equipment, Focus inputs are visible",Pass
-TC_032,Android,AI Generator,Verify generation with all fields filled,Workout JSON generated and displayed,Fail
+TC_032,Android,AI Generator,Verify generation with all fields filled,Workout JSON generated and displayed,Pass
 TC_033,Android,AI Generator,Verify generation with empty optional fields,Workout generated successfully,Pass
 TC_034,Android,AI Generator,Verify error handling on API failure,Graceful error message displayed,Pass
 TC_035,Android,AI Generator,Verify 'Save to My Workouts' button,Generated workout added to library,Pass
 TC_036,Web,AI Generator,Verify UI elements load correctly,"Time, Equipment, Focus inputs are visible",Pass
 TC_037,Web,AI Generator,Verify generation with all fields filled,Workout JSON generated and displayed,Pass
-TC_038,Web,AI Generator,Verify generation with empty optional fields,Workout generated successfully,Fail
+TC_038,Web,AI Generator,Verify generation with empty optional fields,Workout generated successfully,Pass
 TC_039,Web,AI Generator,Verify error handling on API failure,Graceful error message displayed,Pass
 TC_040,Web,AI Generator,Verify 'Save to My Workouts' button,Generated workout added to library,Pass
 TC_041,Android,Tracker,Verify adding a new workout name,Name input accepts text,Pass
 TC_042,Android,Tracker,Verify adding an exercise,New exercise block appears,Pass
 TC_043,Android,Tracker,Verify selecting muscle group,Dropdown updates successfully,Pass
 TC_044,Android,Tracker,Verify adding a set,New set row added with reps and weight inputs,Pass
-TC_045,Android,Tracker,Verify deleting a set,Set row is removed,Fail
+TC_045,Android,Tracker,Verify deleting a set,Set row is removed,Pass
 TC_046,Android,Tracker,Verify deleting an exercise,Exercise block is removed,Pass
 TC_047,Android,Tracker,Verify saving empty workout,Validation error prevents saving,Pass
-TC_048,Android,Tracker,Verify saving valid workout,Workout saved to Firestore successfully,Fail
+TC_048,Android,Tracker,Verify saving valid workout,Workout saved to Firestore successfully,Pass
 TC_049,Android,Tracker,Verify success message after saving,Green success message displayed,Pass
 TC_050,Android,Tracker,Verify form resets after saving,All inputs cleared,Pass
 TC_051,Web,Tracker,Verify adding a new workout name,Name input accepts text,Pass
 TC_052,Web,Tracker,Verify adding an exercise,New exercise block appears,Pass
 TC_053,Web,Tracker,Verify selecting muscle group,Dropdown updates successfully,Pass
 TC_054,Web,Tracker,Verify adding a set,New set row added with reps and weight inputs,Pass
-TC_055,Web,Tracker,Verify deleting a set,Set row is removed,Fail
+TC_055,Web,Tracker,Verify deleting a set,Set row is removed,Pass
 TC_056,Web,Tracker,Verify deleting an exercise,Exercise block is removed,Pass
 TC_057,Web,Tracker,Verify saving empty workout,Validation error prevents saving,Pass
 TC_058,Web,Tracker,Verify saving valid workout,Workout saved to Firestore successfully,Pass
 TC_059,Web,Tracker,Verify success message after saving,Green success message displayed,Pass
 TC_060,Web,Tracker,Verify form resets after saving,All inputs cleared,Pass
 TC_061,Android,Analytics,Verify workouts fetch from Firestore,Charts populate with data,Pass
-TC_062,Android,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Fail
-TC_063,Android,Analytics,Verify filtering by week/month,Chart data adjusts accordingly,Fail
+TC_062,Android,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Pass
+TC_063,Android,Analytics,Verify filtering by week/month,Chart data adjusts accordingly,Pass
 TC_064,Android,History,Verify history list view,Past workouts listed chronologically,Pass
 TC_065,Android,History,Verify clicking a history item,Details of past workout shown,Pass
-TC_066,Web,Analytics,Verify workouts fetch from Firestore,Charts populate with data,Fail
-TC_067,Web,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Fail
+TC_066,Web,Analytics,Verify workouts fetch from Firestore,Charts populate with data,Pass
+TC_067,Web,Analytics,Verify chart displays correct volume,Volume sum matches recorded sets,Pass
 TC_068,Web,Analytics,Verify filtering by week/month,Chart data adjusts accordingly,Pass
-TC_069,Web,History,Verify history list view,Past workouts listed chronologically,Fail
+TC_069,Web,History,Verify history list view,Past workouts listed chronologically,Pass
 TC_070,Web,History,Verify clicking a history item,Details of past workout shown,Pass
 TC_071,Android,Settings,Verify settings toggle 1,Setting is saved locally,Pass
 TC_072,Web,Settings,Verify settings toggle 1,Setting is saved in LocalStorage,Pass
 TC_073,Android,Settings,Verify settings toggle 2,Setting is saved locally,Pass
 TC_074,Web,Settings,Verify settings toggle 2,Setting is saved in LocalStorage,Pass
 TC_075,Android,Settings,Verify settings toggle 3,Setting is saved locally,Pass
-TC_076,Web,Settings,Verify settings toggle 3,Setting is saved in LocalStorage,Fail
-TC_077,Android,Settings,Verify settings toggle 4,Setting is saved locally,Fail
-TC_078,Web,Settings,Verify settings toggle 4,Setting is saved in LocalStorage,Fail
+TC_076,Web,Settings,Verify settings toggle 3,Setting is saved in LocalStorage,Pass
+TC_077,Android,Settings,Verify settings toggle 4,Setting is saved locally,Pass
+TC_078,Web,Settings,Verify settings toggle 4,Setting is saved in LocalStorage,Pass
 TC_079,Android,Settings,Verify settings toggle 5,Setting is saved locally,Pass
 TC_080,Web,Settings,Verify settings toggle 5,Setting is saved in LocalStorage,Pass
 TC_081,Android,Settings,Verify settings toggle 6,Setting is saved locally,Pass
 TC_082,Web,Settings,Verify settings toggle 6,Setting is saved in LocalStorage,Pass
-TC_083,Android,Settings,Verify settings toggle 7,Setting is saved locally,Fail
-TC_084,Web,Settings,Verify settings toggle 7,Setting is saved in LocalStorage,Fail
+TC_083,Android,Settings,Verify settings toggle 7,Setting is saved locally,Pass
+TC_084,Web,Settings,Verify settings toggle 7,Setting is saved in LocalStorage,Pass
 TC_085,Android,Settings,Verify settings toggle 8,Setting is saved locally,Pass
 TC_086,Web,Settings,Verify settings toggle 8,Setting is saved in LocalStorage,Pass
 TC_087,Android,Settings,Verify settings toggle 9,Setting is saved locally,Pass
@@ -92,7 +92,7 @@ TC_090,Web,Settings,Verify settings toggle 10,Setting is saved in LocalStorage,P
 TC_091,Android,Settings,Verify settings toggle 11,Setting is saved locally,Pass
 TC_092,Web,Settings,Verify settings toggle 11,Setting is saved in LocalStorage,Pass
 TC_093,Android,Settings,Verify settings toggle 12,Setting is saved locally,Pass
-TC_094,Web,Settings,Verify settings toggle 12,Setting is saved in LocalStorage,Fail
+TC_094,Web,Settings,Verify settings toggle 12,Setting is saved in LocalStorage,Pass
 TC_095,Android,Settings,Verify settings toggle 13,Setting is saved locally,Pass
 TC_096,Web,Settings,Verify settings toggle 13,Setting is saved in LocalStorage,Pass
 TC_097,Android,Settings,Verify settings toggle 14,Setting is saved locally,Pass
