@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MuscleIQ E2E Android Suite" parallel="false">
+    <listeners>
+        <listener class-name="com.muscleiq.listeners.TestListener" />
+    </listeners>
+    <test name="Massive 400+ E2E Test Suite">
+        <classes>
+            <class name="com.muscleiq.tests.MassiveTestFactory" />
+        </classes>
+    </test>
+</suite>
