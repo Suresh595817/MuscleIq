@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest # Required for hardware acceleration on Android Emulators
+    runs-on: macos-13 # Explicitly use Intel Mac (x86_64) for Android Emulator compatibility
     timeout-minutes: 120
 
     steps:
