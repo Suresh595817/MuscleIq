@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
           cache: 'maven'
           # FIX: Specify the exact path to pom.xml since it is not in the root directory!
           cache-dependency-path: 'QA/automation/pom.xml'
