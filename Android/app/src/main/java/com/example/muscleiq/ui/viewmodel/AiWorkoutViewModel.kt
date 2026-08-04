@@ -2,15 +2,19 @@ package com.example.muscleiq.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.muscleiq.BuildConfig
 import com.example.muscleiq.data.GeneratedWorkout
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.content
-import com.google.ai.client.generativeai.type.generationConfig
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.util.concurrent.TimeUnit
+import org.json.JSONObject
 
 sealed class AiWorkoutState {
     object Idle : AiWorkoutState()
@@ -23,14 +27,13 @@ class AiWorkoutViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<AiWorkoutState>(AiWorkoutState.Idle)
     val uiState: StateFlow<AiWorkoutState> = _uiState
 
-    // Initialize GenerativeModel
-    private val generativeModel = GenerativeModel(
-        modelName = "gemini-flash-latest",
-        apiKey = "YOUR_GEMINI_API_KEY",
-        generationConfig = generationConfig {
-            responseMimeType = "application/json"
-        }
-    )
+    // 10.0.2.2 is the special alias to your host loopback interface (127.0.0.1) from the Android Emulator
+    private val ollamaUrl = "http://10.0.2.2:11434/api/generate"
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
+        .build()
 
     fun generateWorkout(time: String, equipment: String, focus: String, customRequest: String) {
         _uiState.value = AiWorkoutState.Loading
@@ -60,20 +63,39 @@ class AiWorkoutViewModel : ViewModel() {
                     }
                 """.trimIndent()
 
-                val response = generativeModel.generateContent(
-                    content { text(prompt) }
-                )
-                
-                val responseText = response.text
-                if (responseText != null) {
-                    val gson = Gson()
-                    val generatedWorkout = gson.fromJson(responseText, GeneratedWorkout::class.java)
-                    _uiState.value = AiWorkoutState.Success(generatedWorkout)
-                } else {
-                    _uiState.value = AiWorkoutState.Error("Received empty response from AI.")
+                // Create JSON payload for Ollama
+                val jsonPayload = JSONObject().apply {
+                    put("model", "llama3")
+                    put("prompt", prompt)
+                    put("stream", false)
+                    put("format", "json")
                 }
+
+                val body = jsonPayload.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
+                
+                val request = Request.Builder()
+                    .url(ollamaUrl)
+                    .post(body)
+                    .build()
+
+                // Execute HTTP Request on IO Thread
+                val responseText = withContext(Dispatchers.IO) {
+                    val response = client.newCall(request).execute()
+                    if (!response.isSuccessful) {
+                        throw Exception("Ollama HTTP Error: ${response.code}")
+                    }
+                    val rawBody = response.body?.string() ?: ""
+                    // Parse Ollama's response object
+                    val jsonResponse = JSONObject(rawBody)
+                    jsonResponse.getString("response")
+                }
+                
+                val gson = Gson()
+                val generatedWorkout = gson.fromJson(responseText, GeneratedWorkout::class.java)
+                _uiState.value = AiWorkoutState.Success(generatedWorkout)
+
             } catch (e: Exception) {
-                _uiState.value = AiWorkoutState.Error("Error: ${e.localizedMessage}")
+                _uiState.value = AiWorkoutState.Error("Error connecting to local AI: ${e.localizedMessage}")
             }
         }
     }

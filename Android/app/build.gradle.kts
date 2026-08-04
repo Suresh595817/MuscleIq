@@ -85,8 +85,8 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
 
-    // Gemini AI SDK & JSON parsing
-    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+    // OkHttp for Ollama & JSON parsing
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.code.gson:gson:2.10.1")
 
     testImplementation("junit:junit:4.13.2")

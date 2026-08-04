@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { generativeModel } from '../lib/gemini';
+
 import { Sparkles, Dumbbell } from 'lucide-react';
 
 export default function AIWorkout() {
@@ -15,14 +15,27 @@ export default function AIWorkout() {
     setLoading(true);
     setError("");
     try {
-      const result = await generativeModel.generateContent(
-        `You are MuscleIQ, an expert personal trainer. Create a highly structured workout routine based on this request: ${prompt}. 
-        Format it nicely with markdown, focusing on sets, reps, and target muscles. Keep it engaging.`
-      );
-      setWorkoutPlan(result.response.text());
+      const response = await fetch("http://localhost:11434/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "llama3",
+          prompt: `You are MuscleIQ, an expert personal trainer. Create a highly structured workout routine based on this request: ${prompt}. Format it nicely with markdown, focusing on sets, reps, and target muscles. Keep it engaging.`,
+          stream: false
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      
+      const data = await response.json();
+      setWorkoutPlan(data.response);
     } catch (err) {
       console.error(err);
-      setError("Failed to generate workout. Check your Gemini API key in .env.");
+      setError("Failed to connect to local Ollama instance. Is Ollama running?");
     }
     setLoading(false);
   };
@@ -33,7 +46,7 @@ export default function AIWorkout() {
         <Sparkles size={48} color="#8b5cf6" style={{ marginBottom: '1rem' }} />
         <h1 style={{ fontSize: '2.5rem', margin: '0 0 1rem 0' }}>AI Workout Generator</h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-          Tell Gemini what you want to train today, and let it build the perfect routine.
+          Tell Ollama what you want to train today, and let local AI build the perfect routine.
         </p>
       </div>
 
