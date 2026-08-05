@@ -27,8 +27,8 @@ class AiWorkoutViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<AiWorkoutState>(AiWorkoutState.Idle)
     val uiState: StateFlow<AiWorkoutState> = _uiState
 
-    // 10.0.2.2 is the special alias to your host loopback interface (127.0.0.1) from the Android Emulator
-    private val ollamaUrl = "http://10.0.2.2:11434/api/generate"
+    // Changed to localhost so that 'adb reverse' works perfectly with your physical phone!
+    private val ollamaUrl = "http://localhost:11434/api/generate"
     private val client = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
