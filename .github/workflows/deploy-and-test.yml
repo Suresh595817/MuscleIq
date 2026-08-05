@@ -140,7 +140,7 @@ jobs:
 
   run-appium-tests:
     needs: build-and-deploy
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
       - name: Checkout Code
