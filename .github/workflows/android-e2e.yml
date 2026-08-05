@@ -64,7 +64,7 @@ jobs:
           script: |
             echo "Emulator started, installing APK..."
             adb install Android/app/build/outputs/apk/debug/app-debug.apk
-            echo "Running Maven TestNG Suite (400+ Tests)..."
+            echo "Running Maven TestNG Suite (300 Tests)..."
             cd QA/automation
             mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml || true
 

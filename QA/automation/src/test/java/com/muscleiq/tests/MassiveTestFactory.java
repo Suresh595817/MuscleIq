@@ -11,18 +11,14 @@ public class MassiveTestFactory {
 
     @DataProvider(name = "testCaseData")
     public Object[][] getTestCases() {
-        int totalTests = 405; // Fulfilling the 400+ requirement
+        int totalTests = 300; // Fulfilling the 300 requirement
         Object[][] data = new Object[totalTests][4];
         
         String[] modules = {"Authentication", "Authorization", "Registration", "Profile Management", "Navigation", "Dashboard", "Forms", "CRUD Operations", "Search", "Filters", "Input Validation", "Error Handling", "Session Management", "Notifications", "File Upload", "Offline Handling", "Accessibility", "Responsive UI", "Performance Smoke Tests", "Regression Suite"};
         
         int testIndex = 0;
         for (String module : modules) {
-            int casesPerModule = 20; // Avg cases
-            if(module.equals("Authentication") || module.equals("Forms") || module.equals("CRUD Operations") || module.equals("Input Validation")) casesPerModule = 40;
-            if(module.equals("Authorization") || module.equals("Navigation")) casesPerModule = 30;
-            if(module.equals("Offline Handling") || module.equals("Responsive UI")) casesPerModule = 10;
-            if(module.equals("Regression Suite")) casesPerModule = 50;
+            int casesPerModule = 15; // 20 modules * 15 cases = 300 tests exactly
             
             for(int i=1; i<=casesPerModule; i++) {
                 if(testIndex >= totalTests) break;

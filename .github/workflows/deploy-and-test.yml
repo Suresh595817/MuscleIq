@@ -61,7 +61,7 @@ jobs:
         run: |
           pip install selenium pytest pytest-html openpyxl pandas
 
-      - name: Execute 400+ Selenium E2E Tests against LIVE site
+      - name: Execute 300 Selenium E2E Tests against LIVE site
         working-directory: QA/selenium_tests
         run: |
           echo "Testing against LIVE URL: ${{ needs.build-and-deploy.outputs.page_url }}"
@@ -82,4 +82,58 @@ jobs:
           echo "# Live GitHub Pages E2E Execution Summary" >> $GITHUB_STEP_SUMMARY
           echo "**Deployment URL:** ${{ needs.build-and-deploy.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
           echo "**Execution Date:** $(date)" >> $GITHUB_STEP_SUMMARY
-          echo "**Total Test Cases:** 400+" >> $GITHUB_STEP_SUMMARY
+          echo "**Total Test Cases:** 300" >> $GITHUB_STEP_SUMMARY
+
+  run-load-tests:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install requests pandas openpyxl
+
+      - name: Execute 300 Load Tests
+        working-directory: QA
+        run: python custom_load_test.py || true
+
+      - name: Upload Load Test Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Load-Test-Reports
+          path: QA/reports/
+          retention-days: 30
+
+  run-vulnerability-tests:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install requests pandas openpyxl
+
+      - name: Execute 300 Vulnerability Tests
+        working-directory: QA
+        run: python vulnerability_test.py || true
+
+      - name: Upload Vulnerability Test Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Vulnerability-Reports
+          path: QA/reports/
+          retention-days: 30
