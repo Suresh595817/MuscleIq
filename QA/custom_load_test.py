@@ -66,7 +66,7 @@ results = sorted(results, key=lambda x: x["Test ID"])
 # Calculate aggregate results
 total_time = time.time() - start_time
 rps = TOTAL_TESTS / total_time
-valid_times = [r["Response Time (s)"] for r in results if r["Status Code"] != "N/A"]
+valid_times = [r["Duration (ms)"] / 1000 for r in results if r["Actual Result"] != "N/A"]
 avg_time = statistics.mean(valid_times) if valid_times else 0
 max_time = max(valid_times) if valid_times else 0
 min_time = min(valid_times) if valid_times else 0
@@ -122,22 +122,23 @@ html_content = f"""
         <tr>
             <th>Test ID</th>
             <th>Endpoint</th>
-            <th>Status Code</th>
+            <th>Test Name</th>
+            <th>Actual Result</th>
             <th>Response Time (s)</th>
-            <th>Result</th>
+            <th>Status</th>
         </tr>
 """
 for r in results:
-    css_class = "pass" if "PASS" in r["Result"] else "fail"
-    html_content += f"""
+    css_class = "pass" if "PASS" in str(r["Status"]) else "fail"
+    html_content += f'''
         <tr>
-            <td>{r['Test ID']}</td>
-            <td>{r['Endpoint']}</td>
-            <td>{r['Status Code']}</td>
-            <td>{r['Response Time (s)']}</td>
-            <td class="{css_class}">{r['Result']}</td>
+            <td>{r["Test ID"]}</td>
+            <td>{r["Test Name"]}</td>
+            <td>{r["Actual Result"]}</td>
+            <td>{r["Duration (ms)"] / 1000:.3f}</td>
+            <td class="{css_class}">{r["Status"]}</td>
         </tr>
-    """
+    '''
 html_content += """
     </table>
 </body>
