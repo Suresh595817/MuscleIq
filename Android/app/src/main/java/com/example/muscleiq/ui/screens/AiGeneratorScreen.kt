@@ -159,7 +159,7 @@ fun AiGeneratorScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         CircularProgressIndicator(color = Accent)
                         Spacer(modifier = Modifier.height(16.dp))
-                        Text("Gemini is building your workout...", color = Color(0xFF9CA3AF))
+                        Text("MuscleIQ AI is building your workout...", color = Color(0xFF9CA3AF))
                     }
                 }
             } else if (uiState is AiWorkoutState.Success) {
