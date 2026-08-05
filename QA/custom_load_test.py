@@ -35,10 +35,17 @@ def make_request(request_id):
 
     return {
         "Test ID": f"LOAD_TC_{request_id+1:03d}",
-        "Endpoint": endpoint,
-        "Status Code": status_code,
-        "Response Time (s)": round(req_time, 3),
-        "Result": status
+        "Module": "Performance",
+        "Test Name": f"Load Test - {endpoint}",
+        "Priority": "MEDIUM",
+        "Preconditions": "Target online",
+        "Steps": f"HTTP GET {full_url}",
+        "Test Data": "N/A",
+        "Expected Result": "Status 200 OK within 10s",
+        "Actual Result": f"Status Code: {status_code}",
+        "Status": status,
+        "Duration (ms)": int(req_time * 1000),
+        "Device": "Virtual User"
     }
 
 # Run the test using a thread pool to simulate concurrent load
@@ -64,10 +71,19 @@ min_time = min(valid_times) if valid_times else 0
 # Create Reports Directory
 os.makedirs("reports", exist_ok=True)
 
-# Generate Excel Report
-df = pd.DataFrame(results)
-excel_path = "reports/load_report.xlsx"
-df.to_excel(excel_path, index=False)
+# Generate Enterprise Excel Report
+try:
+    import sys
+    sys.path.append(os.path.dirname(__file__))
+    from excel_generator import generate_enterprise_report
+    excel_path = "reports/load_report.xlsx"
+    generate_enterprise_report(results, excel_path, "Load & Performance")
+except Exception as e:
+    print(f"Failed to generate Enterprise Excel report: {e}")
+    # Fallback to pandas
+    df = pd.DataFrame(results)
+    excel_path = "reports/load_report.xlsx"
+    df.to_excel(excel_path, index=False)
 
 # Generate HTML Report
 html_path = "reports/load_report.html"
