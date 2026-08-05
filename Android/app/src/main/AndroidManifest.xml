@@ -13,6 +13,7 @@
         android:roundIcon="@drawable/muscleiq_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MuscleIQ"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
