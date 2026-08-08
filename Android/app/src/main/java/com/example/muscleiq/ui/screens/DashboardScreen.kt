@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.muscleiq.ui.components.MuscleHeatmap
 import com.example.muscleiq.ui.theme.*
 import com.example.muscleiq.ui.viewmodel.DashboardState
 import com.example.muscleiq.ui.viewmodel.DashboardViewModel
@@ -37,6 +38,7 @@ fun DashboardScreen(
     onNavigateToMuscleMap: () -> Unit,
     onNavigateToProfile: () -> Unit,
     onNavigateToAiWorkout: () -> Unit,
+    onNavigateToAiDiet: () -> Unit,
     onNavigateToAnalytics: () -> Unit,
     viewModel: DashboardViewModel = viewModel()
 ) {
@@ -98,11 +100,12 @@ fun DashboardScreen(
 
             // Quick Stats Grid
             item {
-                Row(modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Row(modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp).height(IntrinsicSize.Max), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     // Workouts Card
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .fillMaxHeight()
                             .clip(RoundedCornerShape(16.dp))
                             .background(Dark200)
                             .border(1.dp, Dark300, RoundedCornerShape(16.dp))
@@ -115,8 +118,8 @@ fun DashboardScreen(
                                 Text("Workouts", color = Warning, fontSize = 14.sp, fontWeight = FontWeight.Medium)
                             }
                             if (state is DashboardState.Success) {
-                                Text("Total", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                                Text("Last 30 days", color = Color(0xFF9CA3AF), fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
+                                Text("${(state as DashboardState.Success).recentWorkouts.size}", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                                Text("Recent sessions", color = Color(0xFF9CA3AF), fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
                             } else {
                                 CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Color.White, strokeWidth = 2.dp)
                             }
@@ -127,6 +130,7 @@ fun DashboardScreen(
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .fillMaxHeight()
                             .clip(RoundedCornerShape(16.dp))
                             .background(Dark200)
                             .border(1.dp, Dark300, RoundedCornerShape(16.dp))
@@ -140,9 +144,21 @@ fun DashboardScreen(
                                 Text("Balance", color = Accent, fontSize = 14.sp, fontWeight = FontWeight.Medium)
                             }
                             if (state is DashboardState.Success) {
-                                val score = (state as DashboardState.Success).imbalanceScore
-                                Text("$score%", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                                Text(if (score >= 80) "Excellent" else "Needs work", color = Color(0xFF9CA3AF), fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
+                                Row(modifier = Modifier.fillMaxWidth().height(60.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
+                                    MuscleHeatmap(
+                                        viewMode = "front",
+                                        getMuscleColor = { Dark300 },
+                                        onMuscleClick = {},
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                    MuscleHeatmap(
+                                        viewMode = "back",
+                                        getMuscleColor = { Dark300 },
+                                        onMuscleClick = {},
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                }
+                                Text("Full Map", color = Color(0xFF9CA3AF), fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
                             } else {
                                 CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Color.White, strokeWidth = 2.dp)
                             }
@@ -183,7 +199,25 @@ fun DashboardScreen(
                 ) {
                     Icon(Icons.Default.AutoAwesome, contentDescription = null, tint = Accent)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Generate AI Workout", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                    Text("AI Workout", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                }
+            }
+
+            // AI Diet CTA
+            item {
+                Button(
+                    onClick = onNavigateToAiDiet,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(bottom = 16.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Dark200),
+                    shape = RoundedCornerShape(16.dp),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF4CAF50)) // Green border
+                ) {
+                    Icon(Icons.Default.AutoAwesome, contentDescription = null, tint = Color(0xFF4CAF50))
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("AI Diet Plan", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
 
@@ -319,6 +353,16 @@ fun DashboardScreen(
                         color = Color(0xFF9CA3AF), 
                         fontSize = 14.sp,
                         modifier = Modifier.clickable { onNavigateToHistory() }
+                    )
+                }
+            }
+
+            if (state is DashboardState.Error) {
+                item {
+                    Text(
+                        text = "Error: ${(state as DashboardState.Error).message}",
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                 }
             }

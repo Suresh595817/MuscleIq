@@ -94,13 +94,9 @@ fun HistoryScreen(
                                         Spacer(modifier = Modifier.height(16.dp))
                                         
                                         Row(
-                                            modifier = Modifier.fillMaxWidth(),
+                                            modifier = Modifier.padding(bottom = 12.dp),
                                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                                         ) {
-                                            SuggestionChip(
-                                                onClick = { },
-                                                label = { Text("⏱️ ${workout.durationMinutes} mins") }
-                                            )
                                             val totalSets = workout.exercises.sumOf { it.sets.size }
                                             SuggestionChip(
                                                 onClick = { },
@@ -108,7 +104,6 @@ fun HistoryScreen(
                                             )
                                         }
                                         
-                                        Spacer(modifier = Modifier.height(12.dp))
                                         
                                         // Show a quick preview of exercises
                                         if (workout.exercises.isNotEmpty()) {

@@ -1,25 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Activity } from 'lucide-react';
-
-const mockStrengthData = [
-  { month: 'Jan', weight: 120 },
-  { month: 'Feb', weight: 135 },
-  { month: 'Mar', weight: 140 },
-  { month: 'Apr', weight: 155 },
-  { month: 'May', weight: 170 },
-  { month: 'Jun', weight: 185 },
-];
-
-const mockVolumeData = [
-  { day: 'Mon', volume: 4500 },
-  { day: 'Tue', volume: 0 },
-  { day: 'Wed', volume: 5200 },
-  { day: 'Thu', volume: 0 },
-  { day: 'Fri', volume: 3800 },
-  { day: 'Sat', volume: 6000 },
-  { day: 'Sun', volume: 0 },
-];
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import { db, auth } from '../lib/firebase';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -36,11 +19,102 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function Analytics() {
+  const [strengthData, setStrengthData] = useState([]);
+  const [volumeData, setVolumeData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!auth.currentUser) return;
+      try {
+        const q = query(
+          collection(db, "Workouts"),
+          where("userId", "==", auth.currentUser.uid)
+        );
+        const snapshot = await getDocs(q);
+        const workouts = snapshot.docs.map(doc => doc.data());
+
+        // Sort workouts in memory (asc)
+        workouts.sort((a, b) => {
+          const dateA = a.date?.seconds || 0;
+          const dateB = b.date?.seconds || 0;
+          return dateA - dateB;
+        });
+
+        // Process Volume (last 7 days of week)
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const volMap = { 'Mon': 0, 'Tue': 0, 'Wed': 0, 'Thu': 0, 'Fri': 0, 'Sat': 0, 'Sun': 0 };
+        
+        const getStartOfWeek = (d) => {
+          const date = new Date(d);
+          const day = date.getDay();
+          const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+          return new Date(date.setDate(diff)).setHours(0,0,0,0);
+        };
+        const currentWeekStart = getStartOfWeek(new Date());
+
+        // Process Strength (Max weight lifted over time)
+        const strData = [];
+
+        workouts.forEach(w => {
+          // Volume
+          const date = new Date(w.date?.seconds * 1000 || Date.now());
+          const dayName = days[date.getDay()];
+          
+          let workoutVolume = 0;
+          let maxWeight = 0;
+
+          if (w.exercises) {
+            w.exercises.forEach(ex => {
+              if (ex.sets) {
+                ex.sets.forEach(set => {
+                  workoutVolume += (set.weight || 0) * (set.reps || 0);
+                  if (set.weight > maxWeight) maxWeight = set.weight;
+                });
+              }
+            });
+          }
+          
+          if (date.getTime() >= currentWeekStart) {
+            volMap[dayName] += workoutVolume;
+          }
+          
+          // Strength progression
+          strData.push({
+            date: date.toLocaleDateString(),
+            weight: maxWeight
+          });
+        });
+
+        setVolumeData([
+          { day: 'Mon', volume: volMap['Mon'] },
+          { day: 'Tue', volume: volMap['Tue'] },
+          { day: 'Wed', volume: volMap['Wed'] },
+          { day: 'Thu', volume: volMap['Thu'] },
+          { day: 'Fri', volume: volMap['Fri'] },
+          { day: 'Sat', volume: volMap['Sat'] },
+          { day: 'Sun', volume: volMap['Sun'] }
+        ]);
+
+        // If no strength data, put placeholder
+        setStrengthData(strData.length > 0 ? strData : [{ date: 'No Data', weight: 0 }]);
+
+      } catch (err) {
+        console.error("Error fetching analytics", err);
+      }
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="animate-fade-in">
       <h1 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Analytics & Progress</h1>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '3rem' }}>Loading...</div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
         {/* Strength Progression (1RM) */}
         <div className="glass-panel" style={{ padding: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
@@ -55,9 +129,9 @@ export default function Analytics() {
           
           <div style={{ height: '300px', width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={mockStrengthData}>
+              <LineChart data={strengthData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                <XAxis dataKey="month" stroke="var(--text-muted)" tick={{fill: 'var(--text-muted)'}} axisLine={false} tickLine={false} />
+                <XAxis dataKey="date" stroke="var(--text-muted)" tick={{fill: 'var(--text-muted)'}} axisLine={false} tickLine={false} />
                 <YAxis stroke="var(--text-muted)" tick={{fill: 'var(--text-muted)'}} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
                 <Line 
@@ -87,7 +161,7 @@ export default function Analytics() {
           
           <div style={{ height: '300px', width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={mockVolumeData}>
+              <BarChart data={volumeData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
                 <XAxis dataKey="day" stroke="var(--text-muted)" tick={{fill: 'var(--text-muted)'}} axisLine={false} tickLine={false} />
                 <YAxis stroke="var(--text-muted)" tick={{fill: 'var(--text-muted)'}} axisLine={false} tickLine={false} />
@@ -97,7 +171,8 @@ export default function Analytics() {
             </ResponsiveContainer>
           </div>
         </div>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

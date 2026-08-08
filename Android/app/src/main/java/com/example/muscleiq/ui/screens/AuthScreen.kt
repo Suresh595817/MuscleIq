@@ -24,12 +24,11 @@ import com.example.muscleiq.ui.viewmodel.AuthViewModel
 @Composable
 fun AuthScreen(
     onNavigateToDashboard: () -> Unit,
+    onNavigateToRegister: () -> Unit,
     viewModel: AuthViewModel = viewModel()
 ) {
     val authState by viewModel.authState.collectAsState()
-    var isLogin by remember { mutableStateOf(true) }
     
-    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -67,19 +66,10 @@ fun AuthScreen(
                 fontWeight = FontWeight.Black
             )
             Text(
-                text = "Your AI Workout Partner",
+                text = "Sign in to your account",
                 color = Color(0xFF9CA3AF),
                 fontSize = 16.sp,
                 modifier = Modifier.padding(top = 8.dp)
-            )
-        }
-
-        if (!isLogin) {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Name") },
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
             )
         }
 
@@ -107,25 +97,29 @@ fun AuthScreen(
         }
 
         Button(
-            onClick = {
-                if (isLogin) viewModel.login(email, password)
-                else viewModel.register(name, email, password)
-            },
+            onClick = { viewModel.login(email, password) },
             modifier = Modifier.fillMaxWidth().height(50.dp),
             enabled = authState !is AuthState.Loading
         ) {
             if (authState is AuthState.Loading) {
                 CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
             } else {
-                Text(if (isLogin) "Login" else "Register")
+                Text("Login")
             }
         }
 
         TextButton(
-            onClick = { isLogin = !isLogin },
-            modifier = Modifier.padding(top = 16.dp)
+            onClick = { viewModel.sendPasswordResetEmail(email) },
+            modifier = Modifier.padding(top = 8.dp)
         ) {
-            Text(if (isLogin) "Don't have an account? Register" else "Already have an account? Login")
+            Text("Forgot Password?", color = Accent)
+        }
+
+        TextButton(
+            onClick = onNavigateToRegister,
+            modifier = Modifier.padding(top = 0.dp)
+        ) {
+            Text("Don't have an account? Register")
         }
     }
 }

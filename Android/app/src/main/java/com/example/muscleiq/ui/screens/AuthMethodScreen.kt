@@ -115,12 +115,6 @@ fun AuthMethodScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 AuthOptionButton(
-                    text = "Continue with Phone",
-                    icon = { Icon(Icons.Default.Phone, contentDescription = null, tint = Color.White) },
-                    onClick = onNavigateToPhoneAuth
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                AuthOptionButton(
                     text = "Continue with Email",
                     icon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.White) },
                     onClick = onNavigateToEmailAuth

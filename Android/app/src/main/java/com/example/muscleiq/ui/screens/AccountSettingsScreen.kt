@@ -142,43 +142,8 @@ fun AccountSettingsScreen(
                         title = "Change Password",
                         onClick = onNavigateToChangePassword
                     )
-                    HorizontalDivider(color = Dark300, modifier = Modifier.padding(horizontal = 16.dp))
-                    SettingsActionItem(
-                        icon = Icons.Default.ShoppingCart, // Subscription proxy icon
-                        iconTint = Color(0xFFF472B6), // Pink
-                        title = "Subscription & Billing",
-                        onClick = onNavigateToSubscription
-                    )
                 }
                 Spacer(modifier = Modifier.height(24.dp))
-            }
-            
-            // Support & About
-            item {
-                Text("Support & About", color = Color(0xFF9CA3AF), fontSize = 14.sp, modifier = Modifier.padding(bottom = 8.dp, start = 4.dp))
-                
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Dark200)
-                        .border(1.dp, Dark300, RoundedCornerShape(16.dp))
-                ) {
-                    SettingsActionItem(
-                        icon = Icons.Default.Info,
-                        iconTint = Color(0xFF60A5FA), // Blue
-                        title = "Help Center",
-                        onClick = onNavigateToHelpCenter
-                    )
-                    HorizontalDivider(color = Dark300, modifier = Modifier.padding(horizontal = 16.dp))
-                    SettingsActionItem(
-                        icon = Icons.Default.Star,
-                        iconTint = Warning,
-                        title = "Rate the App",
-                        onClick = onNavigateToRateApp
-                    )
-                }
-                Spacer(modifier = Modifier.height(32.dp))
             }
             
             // Danger Zone

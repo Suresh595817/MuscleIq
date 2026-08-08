@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { auth } from '../lib/firebase';
 import { Plus, Save, Trash2, Dumbbell, Clock, Activity } from 'lucide-react';
 
 export default function WorkoutTracker() {
-  const [workoutName, setWorkoutName] = useState("");
+  const location = useLocation();
+  const initialMuscle = location.state?.selectedMuscle || "Chest";
+
+  const [workoutName, setWorkoutName] = useState(location.state?.selectedMuscle ? `${location.state.selectedMuscle} Day` : "");
   const [duration, setDuration] = useState("");
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState([
+    { exerciseName: "", primaryMuscle: initialMuscle, sets: [] }
+  ]);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -58,7 +63,7 @@ export default function WorkoutTracker() {
 
     try {
       const workoutData = {
-        userId: "guest_web_user", // Using a hardcoded guest ID for the web MVP
+        userId: auth.currentUser?.uid || "guest_web_user",
         name: workoutName,
         durationMinutes: parseInt(duration) || 0,
         date: new Date(),
@@ -72,7 +77,18 @@ export default function WorkoutTracker() {
         }))
       };
 
-      await addDoc(collection(db, "workouts"), workoutData);
+      const response = await fetch('http://localhost:5000/api/workouts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(workoutData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       setSaveSuccess(true);
       
       // Reset form
@@ -123,7 +139,7 @@ export default function WorkoutTracker() {
                 value={workoutName}
                 onChange={(e) => setWorkoutName(e.target.value)}
                 placeholder="e.g. Chest & Triceps"
-                style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)', color: 'white', outline: 'none' }}
+                style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.5)', color: 'white', outline: 'none', fontSize: '1.2rem', fontWeight: 'bold' }}
               />
             </div>
             <div style={{ flex: '1 1 150px' }}>
@@ -133,7 +149,7 @@ export default function WorkoutTracker() {
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
                 placeholder="e.g. 60"
-                style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)', color: 'white', outline: 'none' }}
+                style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.5)', color: 'white', outline: 'none', fontSize: '1.2rem', fontWeight: 'bold' }}
               />
             </div>
           </div>
@@ -148,7 +164,7 @@ export default function WorkoutTracker() {
                   placeholder="Exercise Name"
                   value={exercise.exerciseName}
                   onChange={(e) => updateExercise(exIdx, 'exerciseName', e.target.value)}
-                  style={{ flex: 2, padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)', color: 'white', outline: 'none', fontSize: '1.1rem', fontWeight: 'bold' }}
+                  style={{ flex: 2, padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.5)', color: 'white', outline: 'none', fontSize: '1.1rem', fontWeight: 'bold' }}
                 />
                 <select
                   value={exercise.primaryMuscle}
@@ -156,11 +172,19 @@ export default function WorkoutTracker() {
                   style={{ flex: 1, padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(20,20,20,0.9)', color: 'white', outline: 'none' }}
                 >
                   <option value="Chest">Chest</option>
-                  <option value="Back">Back</option>
-                  <option value="Legs">Legs</option>
-                  <option value="Shoulders">Shoulders</option>
-                  <option value="Arms">Arms</option>
-                  <option value="Core">Core</option>
+                  <option value="Front Delts">Front Delts</option>
+                  <option value="Rear Delts">Rear Delts</option>
+                  <option value="Upper Back">Upper Back</option>
+                  <option value="Lats">Lats</option>
+                  <option value="Biceps">Biceps</option>
+                  <option value="Triceps">Triceps</option>
+                  <option value="Forearms">Forearms</option>
+                  <option value="Abs">Abs</option>
+                  <option value="Obliques">Obliques</option>
+                  <option value="Quads">Quads</option>
+                  <option value="Hamstrings">Hamstrings</option>
+                  <option value="Glutes">Glutes</option>
+                  <option value="Calves">Calves</option>
                 </select>
               </div>
               <button type="button" onClick={() => removeExercise(exIdx)} style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '0.5rem', marginLeft: '1rem' }}>
@@ -178,7 +202,7 @@ export default function WorkoutTracker() {
                       placeholder="kg"
                       value={set.weight || ""}
                       onChange={(e) => updateSet(exIdx, setIdx, 'weight', e.target.value)}
-                      style={{ width: '80px', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.4)', color: 'white', textAlign: 'center', outline: 'none' }}
+                      style={{ width: '80px', padding: '0.5rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', outline: 'none', fontWeight: '600' }}
                     />
                     <span style={{ color: 'var(--text-muted)' }}>kg</span>
                   </div>
@@ -188,7 +212,7 @@ export default function WorkoutTracker() {
                       placeholder="reps"
                       value={set.reps || ""}
                       onChange={(e) => updateSet(exIdx, setIdx, 'reps', e.target.value)}
-                      style={{ width: '80px', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.4)', color: 'white', textAlign: 'center', outline: 'none' }}
+                      style={{ width: '80px', padding: '0.5rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', outline: 'none', fontWeight: '600' }}
                     />
                     <span style={{ color: 'var(--text-muted)' }}>reps</span>
                   </div>

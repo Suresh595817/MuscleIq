@@ -3,17 +3,23 @@ import React, { useState } from 'react';
 import { Sparkles, Dumbbell } from 'lucide-react';
 
 export default function AIWorkout() {
+  const [time, setTime] = useState("30 mins");
+  const [equipment, setEquipment] = useState("Dumbbells");
+  const [focus, setFocus] = useState("Full Body");
   const [prompt, setPrompt] = useState("");
+  
   const [loading, setLoading] = useState(false);
   const [workoutPlan, setWorkoutPlan] = useState("");
   const [error, setError] = useState("");
 
   const generateWorkout = async (e) => {
     e.preventDefault();
-    if (!prompt.trim()) return;
     
     setLoading(true);
     setError("");
+    
+    const finalPrompt = `Time available: ${time}\nEquipment available: ${equipment}\nFocus area: ${focus}\nCustom request: ${prompt}`;
+
     try {
       const response = await fetch("http://localhost:11434/api/generate", {
         method: "POST",
@@ -22,7 +28,7 @@ export default function AIWorkout() {
         },
         body: JSON.stringify({
           model: "llama3",
-          prompt: `You are MuscleIQ, an expert personal trainer. Create a highly structured workout routine based on this request: ${prompt}. Format it nicely with markdown, focusing on sets, reps, and target muscles. Keep it engaging.`,
+          prompt: `You are an AI Coach, an expert personal trainer. Create a highly structured workout routine based on this request:\n\n${finalPrompt}\n\nFormat it nicely with markdown, focusing on sets, reps, and target muscles. Keep it engaging.`,
           stream: false
         })
       });
@@ -51,24 +57,98 @@ export default function AIWorkout() {
       </div>
 
       <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem' }}>
-        <form onSubmit={generateWorkout} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <textarea 
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. I have 45 minutes and want to do a heavy back and bicep workout focusing on hypertrophy..."
-            style={{ 
-              width: '100%', 
-              minHeight: '120px', 
-              background: 'rgba(0,0,0,0.2)', 
-              border: '1px solid var(--card-border)', 
-              borderRadius: '0.5rem',
-              padding: '1rem',
-              color: 'white',
-              fontFamily: 'inherit',
-              resize: 'vertical',
-              outline: 'none'
-            }}
-          />
+        <form onSubmit={generateWorkout} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>Time Available</label>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {["15 mins", "30 mins", "45 mins", "60 mins"].map(t => (
+                <div 
+                  key={t}
+                  onClick={() => setTime(t)}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    borderRadius: '2rem',
+                    background: time === t ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${time === t ? '#8b5cf6' : 'transparent'}`,
+                    color: time === t ? '#8b5cf6' : 'var(--text-muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  {t}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>Equipment</label>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {["Bodyweight", "Dumbbells", "Barbell", "Full Gym"].map(e => (
+                <div 
+                  key={e}
+                  onClick={() => setEquipment(e)}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    borderRadius: '2rem',
+                    background: equipment === e ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${equipment === e ? '#8b5cf6' : 'transparent'}`,
+                    color: equipment === e ? '#8b5cf6' : 'var(--text-muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  {e}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>Focus Area</label>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {["Full Body", "Upper Body", "Lower Body", "Core"].map(f => (
+                <div 
+                  key={f}
+                  onClick={() => setFocus(f)}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    borderRadius: '2rem',
+                    background: focus === f ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${focus === f ? '#8b5cf6' : 'transparent'}`,
+                    color: focus === f ? '#8b5cf6' : 'var(--text-muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-muted)' }}>Additional Requests (Optional)</label>
+            <textarea 
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="e.g. Include some mobility work at the end..."
+              style={{ 
+                width: '100%', 
+                minHeight: '80px', 
+                background: 'rgba(0,0,0,0.2)', 
+                border: '1px solid var(--card-border)', 
+                borderRadius: '0.5rem',
+                padding: '1rem',
+                color: 'white',
+                fontFamily: 'inherit',
+                resize: 'vertical',
+                outline: 'none'
+              }}
+            />
+          </div>
+
           <button 
             type="submit" 
             className="btn-primary" 

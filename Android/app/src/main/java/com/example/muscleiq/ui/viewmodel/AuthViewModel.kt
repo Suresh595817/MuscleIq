@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 sealed class AuthState {
     object Idle : AuthState()
     object Loading : AuthState()
+    object OtpSent : AuthState()
     data class Success(val user: User) : AuthState()
     data class Error(val message: String) : AuthState()
 }
@@ -25,9 +26,16 @@ class AuthViewModel(
 
     fun login(email: String, pass: String) {
         if (email.isBlank() || pass.isBlank()) {
-            _authState.value = AuthState.Error("Fields cannot be empty")
+            _authState.value = AuthState.Error("Please fill in all fields")
             return
         }
+        
+        val emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$".toRegex()
+        if (!email.matches(emailRegex)) {
+            _authState.value = AuthState.Error("Please enter a valid email address")
+            return
+        }
+
         _authState.value = AuthState.Loading
         viewModelScope.launch {
             val result = authRepository.login(email, pass)
@@ -41,16 +49,52 @@ class AuthViewModel(
 
     fun register(name: String, email: String, pass: String) {
         if (name.isBlank() || email.isBlank() || pass.isBlank()) {
-            _authState.value = AuthState.Error("Fields cannot be empty")
+            _authState.value = AuthState.Error("Please fill in all fields")
             return
         }
+        
+        val emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$".toRegex()
+        if (!email.matches(emailRegex)) {
+            _authState.value = AuthState.Error("Please enter a valid email address")
+            return
+        }
+
+        if (pass.length < 6) {
+            _authState.value = AuthState.Error("Password must be at least 6 characters long")
+            return
+        }
+
+        // Generate and send OTP instead of direct registration
         _authState.value = AuthState.Loading
         viewModelScope.launch {
-            val result = authRepository.register(name, email, pass)
-            result.onSuccess { user ->
-                _authState.value = AuthState.Success(user)
+            val result = authRepository.sendOtp(email)
+            result.onSuccess {
+                _authState.value = AuthState.OtpSent
             }.onFailure { error ->
-                _authState.value = AuthState.Error(error.localizedMessage ?: "Registration Failed")
+                _authState.value = AuthState.Error(error.localizedMessage ?: "Failed to send OTP")
+            }
+        }
+    }
+
+    fun verifyOtpAndRegister(name: String, email: String, pass: String, code: String) {
+        if (code.isBlank() || code.length != 6) {
+            _authState.value = AuthState.Error("Please enter a valid 6-digit OTP")
+            return
+        }
+        
+        _authState.value = AuthState.Loading
+        viewModelScope.launch {
+            val verifyResult = authRepository.verifyOtp(email, code)
+            verifyResult.onSuccess {
+                // OTP verified, now create Firebase account
+                val regResult = authRepository.register(name, email, pass)
+                regResult.onSuccess { user ->
+                    _authState.value = AuthState.Success(user)
+                }.onFailure { error ->
+                    _authState.value = AuthState.Error(error.localizedMessage ?: "Registration Failed after OTP")
+                }
+            }.onFailure { error ->
+                _authState.value = AuthState.Error(error.localizedMessage ?: "Invalid or Expired OTP")
             }
         }
     }
@@ -61,6 +105,22 @@ class AuthViewModel(
     
     fun isUserLoggedIn(): Boolean {
         return authRepository.getCurrentUserId() != null
+    }
+
+    fun sendPasswordResetEmail(email: String) {
+        if (email.isBlank()) {
+            _authState.value = AuthState.Error("Please enter your email address first")
+            return
+        }
+        _authState.value = AuthState.Loading
+        viewModelScope.launch {
+            val result = authRepository.sendPasswordResetEmail(email)
+            result.onSuccess {
+                _authState.value = AuthState.Error("Password reset link sent! Please check your email.")
+            }.onFailure { error ->
+                _authState.value = AuthState.Error(error.localizedMessage ?: "Failed to send reset email")
+            }
+        }
     }
 
     fun signInWithGoogle(activity: android.app.Activity) {
@@ -77,10 +137,7 @@ class AuthViewModel(
                 }
                 val webClientId = activity.getString(resId)
                 
-                val googleIdOption = com.google.android.libraries.identity.googleid.GetGoogleIdOption.Builder()
-                    .setFilterByAuthorizedAccounts(false)
-                    .setServerClientId(webClientId)
-                    .setAutoSelectEnabled(true)
+                val googleIdOption = com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption.Builder(webClientId)
                     .build()
                     
                 val request = androidx.credentials.GetCredentialRequest.Builder()
@@ -166,4 +223,5 @@ class AuthViewModel(
             }
         }
     }
+
 }

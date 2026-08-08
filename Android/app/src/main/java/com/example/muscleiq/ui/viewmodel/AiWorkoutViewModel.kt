@@ -27,12 +27,12 @@ class AiWorkoutViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<AiWorkoutState>(AiWorkoutState.Idle)
     val uiState: StateFlow<AiWorkoutState> = _uiState
 
-    // Changed to localhost so that 'adb reverse' works perfectly with your physical phone!
-    private val ollamaUrl = "http://localhost:11434/api/generate"
+    // Changed to 127.0.0.1 so that 'adb reverse' works perfectly with your physical phone!
+    private val ollamaUrl = "http://127.0.0.1:11434/api/generate"
     private val client = OkHttpClient.Builder()
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(180, TimeUnit.SECONDS)
+        .readTimeout(180, TimeUnit.SECONDS)
+        .writeTimeout(180, TimeUnit.SECONDS)
         .build()
 
     fun generateWorkout(time: String, equipment: String, focus: String, customRequest: String) {
@@ -41,7 +41,7 @@ class AiWorkoutViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val prompt = """
-                    You are an expert personal trainer. Generate a workout based on the following:
+                    You are an AI Coach, an expert personal trainer. Generate a workout based on the following:
                     Time available: $time
                     Equipment available: $equipment
                     Focus area: $focus

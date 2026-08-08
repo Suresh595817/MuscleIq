@@ -96,15 +96,6 @@ fun RateAppScreen(
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Button(
-                        onClick = { /* Could launch play store intent */ },
-                        modifier = Modifier.fillMaxWidth().height(48.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Warning),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text("Rate on Play Store", color = Color.White, fontWeight = FontWeight.Bold)
-                    }
                 }
             }
         }

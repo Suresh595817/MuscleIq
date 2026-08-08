@@ -129,16 +129,6 @@ fun SubscriptionScreen(
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                         )
                         Spacer(modifier = Modifier.height(24.dp))
-                        Button(
-                            onClick = { /* Upgrade */ },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(56.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Text("Upgrade to Pro — $9.99/mo", color = Color.Black, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(32.dp))

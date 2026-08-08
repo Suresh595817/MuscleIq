@@ -4,6 +4,9 @@ import com.example.muscleiq.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import com.google.firebase.auth.UserProfileChangeRequest
 
 class AuthRepository(
     private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
@@ -15,9 +18,14 @@ class AuthRepository(
             val userId = authResult.user?.uid ?: throw Exception("Login failed")
             
             val userDoc = firestore.collection("Users").document(userId).get().await()
-            val user = userDoc.toObject(User::class.java) ?: throw Exception("User data not found")
-            
-            Result.success(user)
+            val user = userDoc.toObject(User::class.java)
+            if (user != null) {
+                Result.success(user)
+            } else {
+                val fallbackName = authResult.user?.displayName ?: "Athlete"
+                val fallbackUser = User(id = userId, name = fallbackName, email = email)
+                Result.success(fallbackUser)
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -27,6 +35,11 @@ class AuthRepository(
         return try {
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()
             val userId = authResult.user?.uid ?: throw Exception("Registration failed")
+            
+            val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build()
+            authResult.user?.updateProfile(profileUpdates)?.await()
             
             val user = User(id = userId, name = name, email = email)
             firestore.collection("Users").document(userId).set(user).await()
@@ -45,10 +58,19 @@ class AuthRepository(
         val userId = getCurrentUserId() ?: return Result.failure(Exception("Not logged in"))
         return try {
             val userDoc = firestore.collection("Users").document(userId).get().await()
-            val user = userDoc.toObject(User::class.java) ?: throw Exception("User not found")
-            Result.success(user)
+            val user = userDoc.toObject(User::class.java)
+            if (user != null) {
+                Result.success(user)
+            } else {
+                // Fallback to FirebaseAuth profile if not in Firestore (e.g. registered on web)
+                val fallbackName = auth.currentUser?.displayName ?: "Athlete"
+                val fallbackUser = User(id = userId, name = fallbackName, email = auth.currentUser?.email ?: "")
+                Result.success(fallbackUser)
+            }
         } catch (e: Exception) {
-            Result.failure(e)
+            val fallbackName = auth.currentUser?.displayName ?: "Athlete"
+            val fallbackUser = User(id = userId, name = fallbackName, email = auth.currentUser?.email ?: "")
+            Result.success(fallbackUser)
         }
     }
     
@@ -95,6 +117,67 @@ class AuthRepository(
                 firestore.collection("Users").document(userId).set(user).await()
             }
             Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun sendPasswordResetEmail(email: String): Result<Unit> {
+        return try {
+            auth.sendPasswordResetEmail(email).await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun sendOtp(email: String): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            val url = java.net.URL("http://127.0.0.1:5000/api/auth/send-otp")
+            val connection = url.openConnection() as java.net.HttpURLConnection
+            connection.requestMethod = "POST"
+            connection.setRequestProperty("Content-Type", "application/json")
+            connection.doOutput = true
+
+            val jsonInputString = "{\"email\": \"$email\"}"
+            connection.outputStream.use { os ->
+                val input = jsonInputString.toByteArray(Charsets.UTF_8)
+                os.write(input, 0, input.size)
+            }
+
+            val responseCode = connection.responseCode
+            if (responseCode in 200..299) {
+                Result.success(Unit)
+            } else {
+                val errorStream = connection.errorStream?.bufferedReader()?.use { it.readText() } ?: "Unknown error"
+                Result.failure(Exception(errorStream))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun verifyOtp(email: String, code: String): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            val url = java.net.URL("http://127.0.0.1:5000/api/auth/verify-otp")
+            val connection = url.openConnection() as java.net.HttpURLConnection
+            connection.requestMethod = "POST"
+            connection.setRequestProperty("Content-Type", "application/json")
+            connection.doOutput = true
+
+            val jsonInputString = "{\"email\": \"$email\", \"code\": \"$code\"}"
+            connection.outputStream.use { os ->
+                val input = jsonInputString.toByteArray(Charsets.UTF_8)
+                os.write(input, 0, input.size)
+            }
+
+            val responseCode = connection.responseCode
+            if (responseCode in 200..299) {
+                Result.success(Unit)
+            } else {
+                val errorStream = connection.errorStream?.bufferedReader()?.use { it.readText() } ?: "Unknown error"
+                Result.failure(Exception(errorStream))
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }

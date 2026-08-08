@@ -212,7 +212,6 @@ fun ProfileScreen(
                     MenuItem("Account Settings", onClick = onNavigateToAccountSettings)
                     MenuItem("Notifications", onClick = onNavigateToNotifications)
                     MenuItem("Subscription", onClick = onNavigateToSubscription)
-                    MenuItem("Help & Support")
                 }
             }
 

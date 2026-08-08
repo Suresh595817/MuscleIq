@@ -90,7 +90,7 @@ fun AiGeneratorScreen(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "AI Workout",
+                    text = "AI Workout Generator",
                     color = Color.White,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold

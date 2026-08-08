@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -238,6 +239,7 @@ fun WorkoutScreen(
                                     fontSize = 32.sp,
                                     fontWeight = FontWeight.ExtraBold
                                 ),
+                                cursorBrush = SolidColor(Color.White),
                                 modifier = Modifier.fillMaxWidth(),
                                 decorationBox = { innerTextField ->
                                     if (state.workoutName.isEmpty()) {
@@ -264,9 +266,6 @@ fun WorkoutScreen(
                         Column {
                             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                                 Text(exercise.exerciseName, color = Accent, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                                IconButton(onClick = { /* delete exercise */ }, modifier = Modifier.size(24.dp)) {
-                                    Icon(Icons.Default.Delete, contentDescription = "Delete", tint = Color(0xFFEF4444))
-                                }
                             }
                             
                             Spacer(modifier = Modifier.height(16.dp))
